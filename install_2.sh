@@ -2,20 +2,14 @@
 
 # Запрашиваем пароль у пользователя
 read -sp "Введите пароль: " NEW_PASSWORD
-echo  # Добавляем перевод строки после ввода пароля
+echo  # Перевод строки после ввода пароля
 
-# Присваиваем пароль переменной
-MY_PASSWORD="$NEW_PASSWORD"
+# Выполняем команды внутри контейнера Docker
+docker exec -i shardeum-dashboard operator-cli start
+docker exec -i shardeum-dashboard operator-cli gui set password "$NEW_PASSWORD"
+docker exec -i shardeum-dashboard operator-cli gui restart
 
-# Переходим в директорию и запускаем команды в новой среде
-cd $HOME/.shardeum/ && ./shell.sh << EOF
-operator-cli start
-operator-cli gui set password "$MY_PASSWORD"
-operator-cli gui restart
-exit
-EOF
-
-# Удаляем установочный скрипт и обновляем окружение
+# Удаление установочного скрипта и обновление окружения
 rm ./installer.sh
 source $HOME/.shardeum/.env
 cd $HOME
