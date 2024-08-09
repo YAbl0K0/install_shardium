@@ -1,4 +1,9 @@
 
+
+expect -c '
+set timeout 5
+
+spawn ./installer.sh
 expect "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" 
 send "8180\r"
 
