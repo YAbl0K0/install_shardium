@@ -9,6 +9,7 @@ cd $HOME/.shardeum/ && ./shell.sh
 sudo operator-cli start
 sudo operator-cli gui set password "$NEW_PASSWORD"
 sudo operator-cli gui restart
+exit
 
 # Удаление установочного скрипта и обновление окружения
 rm ./installer.sh
