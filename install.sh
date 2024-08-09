@@ -6,7 +6,7 @@ bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/docker.sh
 curl -O https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh && chmod +x installer.sh
 
 expect -c '
-set timeout 10
+set timeout 5
 
 spawn ./installer.sh
 while 1 {
