@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -s "Введите пароль: " NEW_PASSWORD
+read -sp "Введите пароль: " NEW_PASSWORD
 
 cd $HOME/.shardeum/ && ./shell.sh
 
