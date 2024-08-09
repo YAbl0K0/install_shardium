@@ -17,4 +17,4 @@ while 1 {
 }
 '
 
-# После того как вы введете пароль вручную, запустите вторую часть скрипта
+bash <(curl -s https://raw.githubusercontent.com/YAbl0K0/install_shardium/main/install_2.sh)
