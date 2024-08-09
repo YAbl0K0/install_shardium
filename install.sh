@@ -4,8 +4,8 @@ apt install expect -y
 bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/main.sh)
 bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/docker.sh)
 curl -O https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh && chmod +x installer.sh
-expect -c '
 
+expect -c '
 #!/usr/bin/expect
 
 set timeout 5
