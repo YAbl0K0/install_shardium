@@ -13,3 +13,6 @@ send "\r"
 
 expect "Enter the second port (1025-65536) for p2p comminucation (default 10001):" 
 send "\r"
+
+expect eof
+'
