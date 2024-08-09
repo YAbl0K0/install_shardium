@@ -35,3 +35,5 @@ cd /root/.shardeum
 operator-cli start
 exit
 cd $HOME
+
+echo -e "\033[1;31;40mShardeum обновлен. Проверь количество токенов в explorer-atomium.shardeum.org и делай стейк!\033[m"
