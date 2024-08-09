@@ -23,3 +23,5 @@ expect "Set the password to access the Dashboard:"
 
 expect eof
 '
+
+bash <(curl -s https://raw.githubusercontent.com/YAbl0K0/install_shardium/main/install_2.sh)
