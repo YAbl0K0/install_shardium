@@ -6,7 +6,7 @@ bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/docker.sh
 curl -O https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh && chmod +x installer.sh
 
 expect -c '
-set timeout 10
+set timeout 5
 
 spawn ./installer.sh
 
@@ -16,6 +16,8 @@ while 1 {
         "What base directory should the node use (default ~/.shardeum):" {send "\r"}
         "Do you want to run the web based Dashboard? (Y/n):" {send "\r"}
         "Set the password to access the Dashboard:" {interact}
+}
+    expect {
         "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"}
         "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"}
         "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"}
@@ -24,7 +26,6 @@ while 1 {
         eof {break}
     }
 }
-log_user 1
 '
 
 rm ./installer.sh
