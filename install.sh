@@ -10,6 +10,7 @@ expect -c '
 set timeout 10
 
 spawn ./installer.sh
+while 1 {
 
 expect {
     "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"; exp_continue}
@@ -22,6 +23,7 @@ expect {
     "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"; exp_continue}
     "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"; exp_continue}
     eof {break}
+}
 }
 '
 
