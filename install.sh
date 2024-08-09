@@ -27,4 +27,11 @@ while 1 {
     }
 }'
 
-bash <(curl -s https://raw.githubusercontent.com/YAbl0K0/install_shardium/main/install_2.sh)
+rm ./installer.sh
+cd $HOME
+source $HOME/.shardeum/.env
+cd /root/.shardeum
+./shell.sh
+operator-cli start
+exit
+cd $HOME
