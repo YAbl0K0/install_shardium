@@ -25,3 +25,4 @@ expect {
 }
 '
 
+bash <(curl -s https://raw.githubusercontent.com/YAbl0K0/install_shardium/main/install_2.sh)
