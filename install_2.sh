@@ -1,16 +1,19 @@
 #!/bin/bash
 
+# Запрос пароля у пользователя
 read -sp "Введите пароль: " NEW_PASSWORD
 
-cd $HOME/.shardeum/ && ./shell.sh
+# Переход в директорию Shardeum и запуск оболочки
+expect -c "
+spawn bash -c \"cd $HOME/.shardeum/ && ./shell.sh\"
 
-operator-cli start
-operator-cli gui set password "$NEW_PASSWORD"
-operator-cli gui restart
-exit
+expect \"node@b16999ac25f0:~#\" {send \"operator-cli start\r\"; exp_continue}
+expect \"node@b16999ac25f0:~#\" {send \"operator-cli gui set password $NEW_PASSWORD\r\"; exp_continue}
+expect \"node@b16999ac25f0:~#\" {send \"operator-cli gui restart\r\"; exp_continue}
+expect \"node@b16999ac25f0:~#\" {send \"exit\r\"; exp_continue}
+"
 
+# Удаление установочного скрипта и обновление окружения
 rm ./installer.sh
 source $HOME/.shardeum/.env
 cd $HOME
-
-echo -e "\033[1;31;40mShardeum установлен. Проверь количество токенов в explorer-sphinx.shardeum.org и делай стейк!\033[m"
