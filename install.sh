@@ -23,14 +23,3 @@ expect "Set the password to access the Dashboard:"
 
 expect eof
 '
-
-rm ./installer.sh
-cd $HOME
-source $HOME/.shardeum/.env
-cd /root/.shardeum
-./shell.sh
-operator-cli start
-exit
-cd $HOME
-
-echo -e "\033[1;31;40mShardeum обновлен. Проверь количество токенов в explorer-sphinx.shardeum.org и делай стейк!\033[m"
