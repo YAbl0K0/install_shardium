@@ -7,36 +7,21 @@ set timeout 5
 
 spawn ./installer.sh
 
-expect "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:"
-send "y\r"
+expect {
+    "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"; exp_continue}
+    "What base directory should the node use (default ~/.shardeum):" {send "\r"; exp_continue}
+    "Do you want to run the web based Dashboard? (Y/n):" {send "\r"; exp_continue}
+    "Set the password to access the Dashboard:" {interact}
+}
 
-expect "What base directory should the node use (default ~/.shardeum):"
-send "\r"
-
-expect "Do you want to run the web based Dashboard? (Y/n):"
-send "\r"
-
-# Ввод пароля вручную
-expect "Set the password to access the Dashboard:"
-interact
-
-# Продолжение после ручного ввода пароля
-expect "Enter the port (1025-65536) to access the web based Dashboard (default 8080):"
-send "8180\r"
-
-expect "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):"
-send "\r"
-
-expect "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):"
-send "\r"
-
-expect "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):"
-send "\r"
-
-expect "Enter the second port (1025-65536) for p2p communication (default 10001):"
-send "\r"
-
-expect eof
+expect {
+    "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"; exp_continue}
+    "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"; exp_continue}
+    "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"; exp_continue}
+    "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"; exp_continue}
+    "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"; exp_continue}
+    eof {break}
+}
 '
 
 rm ./installer.sh
