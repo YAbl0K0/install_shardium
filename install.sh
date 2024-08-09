@@ -8,29 +8,30 @@ set timeout 5
 spawn ./installer.sh
 
 expect {
-    "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"; exp_continue}
-    "What base directory should the node use (default ~/.shardeum):" {send "\r"; exp_continue}
-    "Do you want to run the web based Dashboard? (Y/n):" {send "\r"; exp_continue}
-    "Set the password to access the Dashboard:" {interact}
-}
-
-expect {
-    "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"; exp_continue}
-    "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"; exp_continue}
-    "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"; exp_continue}
-    "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"; exp_continue}
-    "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"; exp_continue}
+    "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"}
+    "What base directory should the node use (default ~/.shardeum):" {send "\r"}
+    "Do you want to run the web based Dashboard? (Y/n):" {send "\r"}
+    "Set the password to access the Dashboard:" {send "\r"}
+    "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"}
+    "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"}
+    "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"}
+    "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"}
+    "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"}
     eof {break}
 }
 '
 
-rm ./installer.sh
-cd $HOME
-source $HOME/.shardeum/.env
-cd /root/.shardeum
-./shell.sh
+read -sp "Введите пароль: " NEW_PASSWORD
+
+cd $HOME/.shardeum/ && ./shell.sh
+
 operator-cli start
+operator-cli gui set password "$NEW_PASSWORD"
+operator-cli gui restart
 exit
+
+rm ./installer.sh
+source $HOME/.shardeum/.env
 cd $HOME
 
 echo -e "\033[1;31;40mShardeum установлен. Проверь количество токенов в explorer-sphinx.shardeum.org и делай стейк!\033[m"
