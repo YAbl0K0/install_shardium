@@ -19,7 +19,10 @@ send "\r"
 expect "Do you want to run the web based Dashboard? (y/n):" 
 send "\r"
 
+expect "Set the password to access the Dashboard:"
+
 expect eof
 '
+read
 
 bash <(curl -s https://raw.githubusercontent.com/YAbl0K0/install_shardium/main/install_2.sh)
