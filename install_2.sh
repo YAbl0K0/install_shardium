@@ -1,10 +1,15 @@
 #!/bin/bash
 
-rm ./installer.sh
+read -s "Введите пароль: " NEW_PASSWORD
+
 cd $HOME/.shardeum/ && ./shell.sh
+
 operator-cli start
+operator-cli gui set password "$NEW_PASSWORD"
+operator-cli gui restart
 exit
 
+rm ./installer.sh
 source $HOME/.shardeum/.env
 cd $HOME
 
