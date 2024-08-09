@@ -7,17 +7,19 @@ set timeout 5
 
 spawn ./installer.sh
 
-expect {
-    "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"}
-    "What base directory should the node use (default ~/.shardeum):" {send "\r"}
-    "Do you want to run the web based Dashboard? (Y/n):" {send "\r"}
-    "Set the password to access the Dashboard:" {send "\r"}
-    "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"}
-    "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"}
-    "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"}
-    "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"}
-    "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"}
-    eof {break}
+while 1 {
+    expect {
+        "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"}
+        "What base directory should the node use (default ~/.shardeum):" {send "\r"}
+        "Do you want to run the web based Dashboard? (Y/n):" {send "\r"}
+        "Set the password to access the Dashboard:" {send "\r"}
+        "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"}
+        "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"}
+        "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"}
+        "This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001):" {send "\r"}
+        "Enter the second port (1025-65536) for p2p communication (default 10001):" {send "\r"}
+        eof {break}
+    }
 }
 '
 bash <(curl -s https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh)
