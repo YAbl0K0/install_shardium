@@ -4,12 +4,12 @@
 read -sp "Введите пароль: " NEW_PASSWORD
 
 # Переход в директорию Shardeum и запуск оболочки
-cd $HOME/.shardeum/ && ./shell.sh
-
-sudo operator-cli start
-sudo operator-cli gui set password "$NEW_PASSWORD"
-sudo operator-cli gui restart
+cd $HOME/.shardeum/ && ./shell.sh << EOF
+operator-cli start
+operator-cli gui set password "$NEW_PASSWORD"
+operator-cli gui restart
 exit
+EOF
 
 # Удаление установочного скрипта и обновление окружения
 rm ./installer.sh
