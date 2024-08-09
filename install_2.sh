@@ -2,7 +2,7 @@
 
 # Запрашиваем пароль у пользователя
 read -sp "Введите пароль: " NEW_PASSWORD
-MY_PASS=$NEW_PASSWORD
+MY_PASS="$NEW_PASSWORD"
 
 # Выполняем команды внутри контейнера Docker
 docker exec -i shardeum-dashboard operator-cli start
