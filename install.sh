@@ -19,7 +19,9 @@ send "\r"
 expect "Do you want to run the web based Dashboard? (y/n):" 
 send "\r"
 
-expect "Set the password to access the Dashboard:" 
+# Ожидание ввода пароля вручную
+expect "Set the password to access the Dashboard:"
+expect_user -re ".*\n"
 
 expect "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" 
 send "8180\r"
