@@ -19,8 +19,6 @@ send "\r"
 expect "Do you want to run the web based Dashboard? (y/n):" 
 send "\r"
 
-expect "Set the password to access the Dashboard:"
-
 expect eof
 '
 
