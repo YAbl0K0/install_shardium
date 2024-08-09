@@ -15,7 +15,10 @@ while 1 {
         "By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?:" {send "y\r"}
         "What base directory should the node use (default ~/.shardeum):" {send "\r"}
         "Do you want to run the web based Dashboard? (Y/n):" {send "\r"}
-        "Set the password to access the Dashboard:" {exp_continue}
+        "Set the password to access the Dashboard:" {
+        interact
+        exp_continue
+        }
         "Enter the port (1025-65536) to access the web based Dashboard (default 8080):" {send "8180\r"}
         "If you wish to set an explicit external IP, enter an IPv4 address (default=auto):" {send "\r"}
         "If you wish to set an explicit internal IP, enter an IPv4 address (default=auto):" {send "\r"}
