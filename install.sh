@@ -1,9 +1,5 @@
 #!/bin/bash
 
-sudo docker image prune -a -f
-sudo docker volume prune -f
-sudo docker rm -f shardeum-dashboard
-
 apt install expect -y
 bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/main.sh)
 bash <(curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/docker.sh)
